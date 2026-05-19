@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+
 public class Pedido {
 
     private int numero;
@@ -28,7 +30,7 @@ public class Pedido {
     }
 
     public void calcularSubtotal() {
-        for (int i = 0; i < detalles.size; i++) {
+        for (int i = 0; i < detalles.size(); i++) {
             subtotal += detalles.get(i).getSubtotal();
         }
     }
