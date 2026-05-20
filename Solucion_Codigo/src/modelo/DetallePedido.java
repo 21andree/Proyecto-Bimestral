@@ -1,4 +1,4 @@
-
+package modelo;
 
 public class DetallePedido {
     private Plato plato;

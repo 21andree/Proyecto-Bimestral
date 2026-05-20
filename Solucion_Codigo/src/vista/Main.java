@@ -1,3 +1,6 @@
+package vista;
+
+import modelo.*;
 
 public class Main {
 
