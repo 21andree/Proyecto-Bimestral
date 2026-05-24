@@ -1,6 +1,9 @@
 package modelo;
 
-public class DetallePedido {
+import java.io.Serializable;
+
+public class DetallePedido implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Plato plato;
     private Restaurante restaurante;
     private int cantidad;

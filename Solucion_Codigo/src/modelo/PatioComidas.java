@@ -1,9 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PatioComidas {
+public class PatioComidas implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String nombre;
     private ArrayList<Restaurante> restaurantes;
     private ArrayList<Cliente> clientes;

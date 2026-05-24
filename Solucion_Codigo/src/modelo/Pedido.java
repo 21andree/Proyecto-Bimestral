@@ -1,9 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pedido {
+public class Pedido implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private int numero;
     private String fecha;
     private Cliente cliente;
@@ -56,7 +58,7 @@ public class Pedido {
         return cliente;
     }
 
-    public ArrayList getDetalles() {
+    public ArrayList<DetallePedido> getDetalles() {
         return detalles;
     }
 
@@ -70,6 +72,10 @@ public class Pedido {
 
     public double getCostoDelivery() {
         return costoDelivery;
+    }
+
+    public void setCostoDelivery(double costoDelivery) {
+        this.costoDelivery = costoDelivery;
     }
 
     public double getTotal() {
