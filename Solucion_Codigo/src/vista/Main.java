@@ -1,15 +1,7 @@
 package vista;
 
-import controlador.Gestor;
-import controlador.Repositorio;
-import modelo.Cliente;
-import modelo.DetallePedido;
-import modelo.Ingrediente;
-import modelo.PatioComidas;
-import modelo.Pedido;
-import modelo.Plato;
-import modelo.Restaurante;
-
+import controlador.*;
+import modelo.*;
 import java.util.Scanner;
 
 public class Main {
@@ -281,7 +273,6 @@ public class Main {
             }
         }
     }
-
     private static double leerDouble(String msg) {
         while (true) {
             System.out.print(msg);
