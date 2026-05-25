@@ -1,0 +1,225 @@
+@startuml DiagramaClases
+
+skinparam classFontName Courier
+skinparam classAttributeIconSize 10
+skinparam shadowing false
+hide empty members
+
+' ===== Modelo =====
+package modelo <<Folder>> {
+class PatioComidas <<Serializable>> {
+  - {static} serialVersionUID: long
+  - nombre: String
+  - restaurantes: ArrayList<Restaurante>
+  - clientes: ArrayList<Cliente>
+  - pedidos: ArrayList<Pedido>
+  - iva: double
+  - rangosKm: double[]
+  - costosDelivery: double[]
+  + PatioComidas(nombre: String, iva: double, rangosKm: double[], costosDelivery: double[])
+  + agregarRestaurante(restaurante: Restaurante): void
+  + agregarCliente(cliente: Cliente): void
+  + agregarPedido(pedido: Pedido): void
+  + buscarRestaurante(nombre: String): Restaurante
+  + buscarCliente(cedula: String): Cliente
+  + calcularCostoDelivery(km: double): double
+  + getNombre(): String
+  + getRestaurantes(): ArrayList<Restaurante>
+  + getClientes(): ArrayList<Cliente>
+  + getPedidos(): ArrayList<Pedido>
+  + getIva(): double
+  + getRangosKm(): double[]
+  + getCostosDelivery(): double[]
+}
+class Restaurante <<Serializable>> {
+  - {static} serialVersionUID: long
+  - nombre: String
+  - tipoComida: String
+  - platos: ArrayList<Plato>
+  - ingredientes: ArrayList<Ingrediente>
+  + Restaurante(nombre: String, tipoComida: String)
+  + getNombre(): String
+  + getTipoComida(): String
+  + getPlatos(): ArrayList<Plato>
+  + getIngredientes(): ArrayList<Ingrediente>
+  + agregarPlato(p: Plato): void
+  + agregarIngrediente(i: Ingrediente): void
+  + buscarPlato(nombre: String): Plato
+  + buscarIngrediente(nombre: String): Ingrediente
+  + hayStockSuficiente(p: Plato, cant: int): boolean
+  + descontarIngredientes(p: Plato, cant: int): void
+  + reponerIngrediente(nombre: String, cant: double): void
+}
+class Plato <<Serializable>> {
+  - {static} serialVersionUID: long
+  - nombre: String
+  - precio: double
+  - categoria: String
+  - ingredientesReceta: ArrayList<String>
+  - cantidadesReceta: ArrayList<Double>
+  + Plato(nombre: String, precio: double, categoria: String)
+  + getNombre(): String
+  + getPrecio(): double
+  + getCategoria(): String
+  + getIngredientesReceta(): ArrayList<String>
+  + getCantidadesReceta(): ArrayList<Double>
+  + agregarIngredientesReceta(nombre: String, cant: double): void
+}
+class Ingrediente <<Serializable>> {
+  - {static} serialVersionUID: long
+  - nombre: String
+  - cantidadDisponible: double
+  + Ingrediente(nombre: String, cantidadDisponible: double)
+  + descontar(cant: double): void
+  + reponer(cant: double): void
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + getCantidadDisponible(): double
+  + setCantidadDisponible(cantidadDisponible: double): void
+}
+class Cliente <<Serializable>> {
+  - {static} serialVersionUID: long
+  - cedula: String
+  - nombre: String
+  - direccion: String
+  - sector: String
+  - distanciaKm: double
+  + Cliente(cedula: String, nombre: String, direccion: String, sector: String, distanciaKm: double)
+  + getCedula(): String
+  + setCedula(cedula: String): void
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + getDireccion(): String
+  + setDireccion(direccion: String): void
+  + getSector(): String
+  + setSector(sector: String): void
+  + getDistanciaKm(): double
+  + setDistanciaKm(distanciaKm: double): void
+}
+class Pedido <<Serializable>> {
+  - {static} serialVersionUID: long
+  - numero: int
+  - fecha: String
+  - cliente: Cliente
+  - detalles: ArrayList<DetallePedido>
+  - subtotal: double
+  - montoIva: double
+  - costoDelivery: double
+  - total: double
+  - estado: String
+  + Pedido(numero: int, fecha: String, cliente: Cliente, costoDelivery: double)
+  + agregarDetalle(detalle: DetallePedido): void
+  + calcularSubtotal(): void
+  + calcularIva(porcentaje: double): void
+  + calcularTotal(): void
+  + getNumero(): int
+  + getFecha(): String
+  + getCliente(): Cliente
+  + getDetalles(): ArrayList<DetallePedido>
+  + getSubtotal(): double
+  + getMontoIva(): double
+  + getCostoDelivery(): double
+  + setCostoDelivery(costoDelivery: double): void
+  + getTotal(): double
+  + getEstado(): String
+  + setEstado(estado: String): void
+}
+class DetallePedido <<Serializable>> {
+  - {static} serialVersionUID: long
+  - plato: Plato
+  - restaurante: Restaurante
+  - cantidad: int
+  - subtotal: double
+  + DetallePedido(plato: Plato, restaurante: Restaurante, cantidad: int)
+  + getPlato(): Plato
+  + getRestaurante(): Restaurante
+  + getCantidad(): int
+  + getSubtotal(): double
+  + calcularSubtotal(): void
+}
+}
+
+' ===== Controlador =====
+package controlador <<Folder>> {
+class Gestor {
+  - Patio: PatioComidas
+  + Gestor(Patio: PatioComidas)
+  + obtenerRestauranteMayorFacturacion(fecha: String): Restaurante
+  + obtenerPlatoEstrella(fecha: String): Plato
+  + reporteInventarioActual(): String
+  + registrarPedido(p: Pedido): void
+  + crearRestaurante(nombre: String, tipo: String): Restaurante
+  + crearCliente(cedula: String, nombre: String, direccion: String, sector: String, km: double): void
+}
+class Repositorio {
+  - nombreArchivo: String
+  + guardar(patio: PatioComidas): void
+  + cargar(): PatioComidas
+}
+}
+
+' ===== Vista =====
+package vista <<Folder>> {
+class Main {
+  - {static} sc: Scanner
+  + {static} main(args: String[]): void
+  - {static} mostrarMenu(): void
+  - {static} crearRestaurante(gestor: Gestor): void
+  - {static} agregarIngrediente(r: Restaurante): void
+  - {static} agregarPlato(r: Restaurante): void
+  - {static} crearCliente(gestor: Gestor): void
+  - {static} registrarPedido(gestor: Gestor, patio: PatioComidas): void
+  - {static} agregarDetalleAlPedido(pedido: Pedido, patio: PatioComidas): void
+  - {static} verReportes(gestor: Gestor): void
+  - {static} listarRestaurantes(patio: PatioComidas): void
+  - {static} leerEntero(msg: String): int
+  - {static} leerDouble(msg: String): double
+}
+class VentanaPrincipal <<extends JFrame>> {
+  - patio: PatioComidas
+  - gestor: Gestor
+  - repositorio: Repositorio
+  - cmbRestauranteAEditar: JComboBox<Restaurante>
+  - cmbRestaurantesPedido: JComboBox<Restaurante>
+  - cmbPlatosPedido: JComboBox<Plato>
+  - cmbClientesPedido: JComboBox<Cliente>
+  - modeloDetalles: DefaultTableModel
+  - txtFechaPedido: JTextField
+  - lblTotalPedido: JLabel
+  - pedidoEnCurso: Pedido
+  + VentanaPrincipal(repositorio: Repositorio, patio: PatioComidas, gestor: Gestor)
+  - cerrarYGuardar(): void
+  - panelRestaurantes(): JPanel
+  - dialogAgregarIngrediente(r: Restaurante): void
+  - dialogAgregarPlato(r: Restaurante): void
+  - panelClientes(): JPanel
+  - panelPedidos(): JPanel
+  - recargarPlatosDelRestauranteSeleccionado(): void
+  - panelReportes(): JPanel
+  - panelListado(): JPanel
+  - refrescarCombos(): void
+  + {static} main(args: String[]): void
+}
+class PruebaModelo {
+  + {static} main(args: String[]): void
+}
+}
+
+' ===== Relaciones =====
+PatioComidas "1" *-- "*" Restaurante
+PatioComidas "1" *-- "*" Cliente
+PatioComidas "1" *-- "*" Pedido
+Restaurante "1" *-- "*" Plato
+Restaurante "1" *-- "*" Ingrediente
+Pedido "1" *-- "*" DetallePedido
+Pedido --> "1" Cliente
+DetallePedido --> "1" Plato
+DetallePedido --> "1" Restaurante
+Gestor ..> PatioComidas : <<uses>>
+Repositorio ..> PatioComidas : <<uses>>
+Main ..> Gestor : <<uses>>
+Main ..> Repositorio : <<uses>>
+VentanaPrincipal ..> Gestor : <<uses>>
+VentanaPrincipal ..> Repositorio : <<uses>>
+
+@enduml
