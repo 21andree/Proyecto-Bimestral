@@ -36,7 +36,5 @@ public class Ingrediente implements Serializable {
     public void setCantidadDisponible(double cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
-    
-    
 
 }

@@ -14,7 +14,6 @@ public class Pedido implements Serializable {
     private double montoIva;
     private double costoDelivery;
     private double total;
-    private String estado;
 
     public Pedido(int numero, String fecha, Cliente cliente, double costoDelivery) {
         this.numero = numero;
@@ -25,7 +24,6 @@ public class Pedido implements Serializable {
         this.subtotal = 0;
         this.montoIva = 0;
         this.total = 0;
-        this.estado = "pendiente";
     }
 
     public void agregarDetalle(DetallePedido detalle) {
@@ -41,7 +39,7 @@ public class Pedido implements Serializable {
     public void calcularIva(double porcentaje) {
         montoIva = subtotal * porcentaje;
     }
-    
+
     public void calcularTotal() {
         total = subtotal + montoIva + costoDelivery;
     }
@@ -81,14 +79,5 @@ public class Pedido implements Serializable {
     public double getTotal() {
         return total;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
 
 }

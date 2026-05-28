@@ -10,13 +10,12 @@ public class PruebaModelo {
         double[] costos = {1.50, 2.50, 4.00};
         PatioComidas patio = new PatioComidas("Patio UTPL", 0.15, rangos, costos);
 
-
         Restaurante r1 = new Restaurante("La Casa del Sabor", "Comida tipica");
 
-        Ingrediente papa   = new Ingrediente("Papa", 50);
-        Ingrediente queso  = new Ingrediente("Queso", 20);
-        Ingrediente pollo  = new Ingrediente("Pollo", 30);
-        Ingrediente arroz  = new Ingrediente("Arroz", 40);
+        Ingrediente papa = new Ingrediente("Papa", 50);
+        Ingrediente queso = new Ingrediente("Queso", 20);
+        Ingrediente pollo = new Ingrediente("Pollo", 30);
+        Ingrediente arroz = new Ingrediente("Arroz", 40);
 
         r1.agregarIngrediente(papa);
         r1.agregarIngrediente(queso);
@@ -36,14 +35,11 @@ public class PruebaModelo {
 
         patio.agregarRestaurante(r1);
 
-
         Cliente c1 = new Cliente("1104567890", "Andre Macas", "Av. Pio Jaramillo", "Norte", 3.5);
         patio.agregarCliente(c1);
 
-
         double costoDelivery = patio.calcularCostoDelivery(c1.getDistanciaKm());
         Pedido pedido = new Pedido(1, "2026-05-19", c1, costoDelivery);
-
 
         if (r1.hayStockSuficiente(llapingachos, 2)) {
             DetallePedido d1 = new DetallePedido(llapingachos, r1, 2);
@@ -57,13 +53,11 @@ public class PruebaModelo {
             r1.descontarIngredientes(secoPollo, 1);
         }
 
-
         pedido.calcularSubtotal();
         pedido.calcularIva(patio.getIva());
         pedido.calcularTotal();
 
         patio.agregarPedido(pedido);
-
 
         System.out.println("=========================================");
         System.out.println("   " + patio.getNombre());
@@ -84,9 +78,7 @@ public class PruebaModelo {
         System.out.printf("IVA (%.0f%%):       $%.2f%n", patio.getIva() * 100, pedido.getMontoIva());
         System.out.printf("Delivery:        $%.2f%n", pedido.getCostoDelivery());
         System.out.printf("TOTAL:           $%.2f%n", pedido.getTotal());
-        System.out.println("Estado: " + pedido.getEstado());
         System.out.println("=========================================");
-
 
         System.out.println("\nStock restante en " + r1.getNombre() + ":");
         for (int i = 0; i < r1.getIngredientes().size(); i++) {

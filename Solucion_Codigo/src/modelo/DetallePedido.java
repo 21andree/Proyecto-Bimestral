@@ -3,6 +3,7 @@ package modelo;
 import java.io.Serializable;
 
 public class DetallePedido implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private Plato plato;
     private Restaurante restaurante;
@@ -32,10 +33,8 @@ public class DetallePedido implements Serializable {
         return subtotal;
     }
 
-
-
-    public void calcularSubtotal(){
-        this.subtotal=(plato.getPrecio()*cantidad);
+    public void calcularSubtotal() {
+        this.subtotal = (plato.getPrecio() * cantidad);
     }
 
 }

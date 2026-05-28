@@ -90,7 +90,5 @@ public class PatioComidas implements Serializable {
     public double[] getCostosDelivery() {
         return costosDelivery;
     }
-    
-    
 
 }

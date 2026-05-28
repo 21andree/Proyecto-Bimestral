@@ -2,7 +2,9 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 public class Plato implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private String nombre;
     private double precio;
@@ -38,13 +40,9 @@ public class Plato implements Serializable {
         return cantidadesReceta;
     }
 
-
-
-
-    public void agregarIngredientesReceta(String nombre,double cant){
+    public void agregarIngredientesReceta(String nombre, double cant) {
         ingredientesReceta.add(nombre);
         cantidadesReceta.add(cant);
     }
-
 
 }

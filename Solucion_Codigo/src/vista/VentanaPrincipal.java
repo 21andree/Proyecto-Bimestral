@@ -106,11 +106,19 @@ public class VentanaPrincipal extends JFrame {
         JTextField txtTipo = new JTextField(20);
         JButton btnCrear = new JButton("Crear restaurante");
 
-        g.gridx = 0; g.gridy = 0; pNuevo.add(new JLabel("Nombre:"), g);
-        g.gridx = 1; pNuevo.add(txtNombre, g);
-        g.gridx = 0; g.gridy = 1; pNuevo.add(new JLabel("Tipo:"), g);
-        g.gridx = 1; pNuevo.add(txtTipo, g);
-        g.gridx = 1; g.gridy = 2; pNuevo.add(btnCrear, g);
+        g.gridx = 0;
+        g.gridy = 0;
+        pNuevo.add(new JLabel("Nombre:"), g);
+        g.gridx = 1;
+        pNuevo.add(txtNombre, g);
+        g.gridx = 0;
+        g.gridy = 1;
+        pNuevo.add(new JLabel("Tipo:"), g);
+        g.gridx = 1;
+        pNuevo.add(txtTipo, g);
+        g.gridx = 1;
+        g.gridy = 2;
+        pNuevo.add(btnCrear, g);
 
         btnCrear.addActionListener(e -> {
             String n = txtNombre.getText().trim();
@@ -209,12 +217,21 @@ public class VentanaPrincipal extends JFrame {
         JTextField txtNom = new JTextField(15);
         JTextField txtPr = new JTextField(8);
         JTextField txtCat = new JTextField(15);
-        g.gridx = 0; g.gridy = 0; pForm.add(new JLabel("Nombre:"), g);
-        g.gridx = 1; pForm.add(txtNom, g);
-        g.gridx = 0; g.gridy = 1; pForm.add(new JLabel("Precio:"), g);
-        g.gridx = 1; pForm.add(txtPr, g);
-        g.gridx = 0; g.gridy = 2; pForm.add(new JLabel("Categoria:"), g);
-        g.gridx = 1; pForm.add(txtCat, g);
+        g.gridx = 0;
+        g.gridy = 0;
+        pForm.add(new JLabel("Nombre:"), g);
+        g.gridx = 1;
+        pForm.add(txtNom, g);
+        g.gridx = 0;
+        g.gridy = 1;
+        pForm.add(new JLabel("Precio:"), g);
+        g.gridx = 1;
+        pForm.add(txtPr, g);
+        g.gridx = 0;
+        g.gridy = 2;
+        pForm.add(new JLabel("Categoria:"), g);
+        g.gridx = 1;
+        pForm.add(txtCat, g);
 
         DefaultTableModel modReceta = new DefaultTableModel(new String[]{"Ingrediente", "Cantidad"}, 0) {
             @Override
@@ -310,22 +327,39 @@ public class VentanaPrincipal extends JFrame {
         JButton btnCrear = new JButton("Crear cliente");
 
         int row = 0;
-        g.gridx = 0; g.gridy = row; form.add(new JLabel("Cedula:"), g);
-        g.gridx = 1; form.add(txtCed, g);
+        g.gridx = 0;
+        g.gridy = row;
+        form.add(new JLabel("Cedula:"), g);
+        g.gridx = 1;
+        form.add(txtCed, g);
         row++;
-        g.gridx = 0; g.gridy = row; form.add(new JLabel("Nombre:"), g);
-        g.gridx = 1; form.add(txtNom, g);
+        g.gridx = 0;
+        g.gridy = row;
+        form.add(new JLabel("Nombre:"), g);
+        g.gridx = 1;
+        form.add(txtNom, g);
         row++;
-        g.gridx = 0; g.gridy = row; form.add(new JLabel("Direccion:"), g);
-        g.gridx = 1; form.add(txtDir, g);
+        g.gridx = 0;
+        g.gridy = row;
+        form.add(new JLabel("Direccion:"), g);
+        g.gridx = 1;
+        form.add(txtDir, g);
         row++;
-        g.gridx = 0; g.gridy = row; form.add(new JLabel("Sector:"), g);
-        g.gridx = 1; form.add(txtSec, g);
+        g.gridx = 0;
+        g.gridy = row;
+        form.add(new JLabel("Sector:"), g);
+        g.gridx = 1;
+        form.add(txtSec, g);
         row++;
-        g.gridx = 0; g.gridy = row; form.add(new JLabel("Distancia (km):"), g);
-        g.gridx = 1; form.add(txtKm, g);
+        g.gridx = 0;
+        g.gridy = row;
+        form.add(new JLabel("Distancia (km):"), g);
+        g.gridx = 1;
+        form.add(txtKm, g);
         row++;
-        g.gridx = 1; g.gridy = row; form.add(btnCrear, g);
+        g.gridx = 1;
+        g.gridy = row;
+        form.add(btnCrear, g);
 
         btnCrear.addActionListener(e -> {
             String c = txtCed.getText().trim();
@@ -371,11 +405,19 @@ public class VentanaPrincipal extends JFrame {
         txtFechaPedido = new JTextField(10);
         JButton btnIniciar = new JButton("Iniciar pedido");
 
-        g.gridx = 0; g.gridy = 0; pTop.add(new JLabel("Cliente:"), g);
-        g.gridx = 1; pTop.add(cmbClientesPedido, g);
-        g.gridx = 0; g.gridy = 1; pTop.add(new JLabel("Fecha (YYYY-MM-DD):"), g);
-        g.gridx = 1; pTop.add(txtFechaPedido, g);
-        g.gridx = 1; g.gridy = 2; pTop.add(btnIniciar, g);
+        g.gridx = 0;
+        g.gridy = 0;
+        pTop.add(new JLabel("Cliente:"), g);
+        g.gridx = 1;
+        pTop.add(cmbClientesPedido, g);
+        g.gridx = 0;
+        g.gridy = 1;
+        pTop.add(new JLabel("Fecha (YYYY-MM-DD):"), g);
+        g.gridx = 1;
+        pTop.add(txtFechaPedido, g);
+        g.gridx = 1;
+        g.gridy = 2;
+        pTop.add(btnIniciar, g);
 
         JPanel pMid = new JPanel(new GridBagLayout());
         pMid.setBorder(BorderFactory.createTitledBorder("Agregar plato al pedido"));
@@ -392,13 +434,24 @@ public class VentanaPrincipal extends JFrame {
 
         cmbRestaurantesPedido.addActionListener(e -> recargarPlatosDelRestauranteSeleccionado());
 
-        gm.gridx = 0; gm.gridy = 0; pMid.add(new JLabel("Restaurante:"), gm);
-        gm.gridx = 1; pMid.add(cmbRestaurantesPedido, gm);
-        gm.gridx = 0; gm.gridy = 1; pMid.add(new JLabel("Plato:"), gm);
-        gm.gridx = 1; pMid.add(cmbPlatosPedido, gm);
-        gm.gridx = 0; gm.gridy = 2; pMid.add(new JLabel("Cantidad:"), gm);
-        gm.gridx = 1; pMid.add(txtCant, gm);
-        gm.gridx = 1; gm.gridy = 3; pMid.add(btnAddDetalle, gm);
+        gm.gridx = 0;
+        gm.gridy = 0;
+        pMid.add(new JLabel("Restaurante:"), gm);
+        gm.gridx = 1;
+        pMid.add(cmbRestaurantesPedido, gm);
+        gm.gridx = 0;
+        gm.gridy = 1;
+        pMid.add(new JLabel("Plato:"), gm);
+        gm.gridx = 1;
+        pMid.add(cmbPlatosPedido, gm);
+        gm.gridx = 0;
+        gm.gridy = 2;
+        pMid.add(new JLabel("Cantidad:"), gm);
+        gm.gridx = 1;
+        pMid.add(txtCant, gm);
+        gm.gridx = 1;
+        gm.gridy = 3;
+        pMid.add(btnAddDetalle, gm);
 
         modeloDetalles = new DefaultTableModel(
                 new String[]{"Restaurante", "Plato", "Cantidad", "Subtotal"}, 0) {
@@ -645,9 +698,10 @@ public class VentanaPrincipal extends JFrame {
 
     // ===================== Renderers =====================
     private static class RestauranteRenderer extends DefaultListCellRenderer {
+
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
+                boolean isSelected, boolean cellHasFocus) {
             Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Restaurante) {
                 setText(((Restaurante) value).getNombre());
@@ -657,9 +711,10 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private static class PlatoRenderer extends DefaultListCellRenderer {
+
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
+                boolean isSelected, boolean cellHasFocus) {
             Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Plato) {
                 Plato pl = (Plato) value;
@@ -670,9 +725,10 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private static class ClienteRenderer extends DefaultListCellRenderer {
+
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
+                boolean isSelected, boolean cellHasFocus) {
             Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Cliente) {
                 Cliente cl = (Cliente) value;

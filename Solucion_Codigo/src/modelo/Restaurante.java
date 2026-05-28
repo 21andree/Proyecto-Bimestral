@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Restaurante implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private String nombre;
     private String tipoComida;
     private ArrayList<Plato> platos;
     private ArrayList<Ingrediente> ingredientes;
 
-   public Restaurante(String nombre, String tipoComida) {
-       this.nombre = nombre;
-       this.tipoComida = tipoComida;
-       this.platos = new ArrayList<>();
-       this.ingredientes = new ArrayList<>();
+    public Restaurante(String nombre, String tipoComida) {
+        this.nombre = nombre;
+        this.tipoComida = tipoComida;
+        this.platos = new ArrayList<>();
+        this.ingredientes = new ArrayList<>();
     }
-
 
     public String getNombre() {
         return nombre;
@@ -34,36 +34,39 @@ public class Restaurante implements Serializable {
         return ingredientes;
     }
 
-
-    public void agregarPlato(Plato p){
+    public void agregarPlato(Plato p) {
         platos.add(p);
     }
-    public void agregarIngrediente(Ingrediente i){
+
+    public void agregarIngrediente(Ingrediente i) {
         ingredientes.add(i);
     }
-    public Plato buscarPlato(String nombre){
-        for(int i=0;i<platos.size();i++){
-            if (platos.get(i).getNombre().equalsIgnoreCase(nombre)){
+
+    public Plato buscarPlato(String nombre) {
+        for (int i = 0; i < platos.size(); i++) {
+            if (platos.get(i).getNombre().equalsIgnoreCase(nombre)) {
                 return platos.get(i);
             }
         }
         return null;
     }
-    public Ingrediente buscarIngrediente(String nombre){
-        for(int i=0;i<ingredientes.size();i++){
-            if (ingredientes.get(i).getNombre().equalsIgnoreCase(nombre)){
+
+    public Ingrediente buscarIngrediente(String nombre) {
+        for (int i = 0; i < ingredientes.size(); i++) {
+            if (ingredientes.get(i).getNombre().equalsIgnoreCase(nombre)) {
                 return ingredientes.get(i);
             }
         }
         return null;
     }
-    public boolean hayStockSuficiente(Plato p,int cant){
+
+    public boolean hayStockSuficiente(Plato p, int cant) {
         String nomI;
         Ingrediente ingInv;
         double canti, cantin;
 
         for (int i = 0; i < p.getIngredientesReceta().size(); i++) {
-            nomI  = p.getIngredientesReceta().get(i);
+            nomI = p.getIngredientesReceta().get(i);
             canti = p.getCantidadesReceta().get(i);
             cantin = canti * cant;
 
@@ -79,12 +82,13 @@ public class Restaurante implements Serializable {
         }
         return true;
     }
-    public void descontarIngredientes(Plato p,int cant){
+
+    public void descontarIngredientes(Plato p, int cant) {
         String nomI;
         Ingrediente ingInv;
         double canti, cantin;
         for (int i = 0; i < p.getIngredientesReceta().size(); i++) {
-            nomI  = p.getIngredientesReceta().get(i);
+            nomI = p.getIngredientesReceta().get(i);
             canti = p.getCantidadesReceta().get(i);
             ingInv = this.buscarIngrediente(nomI);
             cantin = canti * cant;
@@ -94,15 +98,14 @@ public class Restaurante implements Serializable {
             ingInv.descontar(cantin);
         }
     }
-    public void reponerIngrediente(String nombre,double cant){
+
+    public void reponerIngrediente(String nombre, double cant) {
         Ingrediente in;
-        in=this.buscarIngrediente(nombre);
-        if (in==null){
+        in = this.buscarIngrediente(nombre);
+        if (in == null) {
             return;
         }
         in.reponer(cant);
     }
-
-
 
 }
